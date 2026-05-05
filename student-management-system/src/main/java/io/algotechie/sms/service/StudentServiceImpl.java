@@ -32,4 +32,15 @@ public class StudentServiceImpl  implements StudentService {
         log.info("studentDtoList={}", studentDtoList);
         return studentDtoList;
     }
+
+    /**
+     * <p> This method create the new student record and save into DB</p>
+     * @return Void
+     */
+    @Override
+    public void createStudent(StudentDto studentDto) {
+        log.info("Inside StudentServiceImpl.createStudent()");
+        Student student = StudentMapper.mapToStudent(studentDto);
+        studentRepository.save(student);
+    }
 }
