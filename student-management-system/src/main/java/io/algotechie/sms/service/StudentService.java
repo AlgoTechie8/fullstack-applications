@@ -9,4 +9,8 @@ public interface StudentService {
     List<StudentDto> getAllStudents();
 
     void createStudent(@Valid StudentDto studentDto);
+
+    StudentDto findStudentById(Long studentId);
+
+    void updateStudent(@Valid StudentDto studentDto);
 }

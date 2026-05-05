@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -71,6 +72,43 @@ public class StudentController {
         }
         studentService.createStudent(studentDto);
         log.info("Student successfully created");
+        return "redirect:/students";
+    }
+
+    /**
+     * <p> This handler method to handle edit student request </p>
+     * @param studentId, model
+     * @return String
+     */
+    // handler method to handle edit student
+    @GetMapping("/students/{studentId}/edit")
+    public String editStudent(@PathVariable("studentId") Long studentId, Model model){
+        log.info("Inside Controller editStudent()");
+        StudentDto student = studentService.findStudentById(studentId);
+        log.info("student: {}",student);
+        model.addAttribute("student", student);
+        return "edit-student";
+    }
+
+    /**
+     * <p> This handler method to handle update student form request </p>
+     * @param studentId, studentDto, bindingResult, model
+     * @return String
+     */
+    // handler method to handle update student from request
+    @PostMapping("/students/{studentId}")
+    public String updateStudent(@PathVariable("studentId") Long studentId,
+                                @Valid @ModelAttribute("student") StudentDto studentDto,
+                                BindingResult bindingResult, Model model){
+        log.info("Inside Controller updateStudent() studentId: {}",studentId);
+        if(bindingResult.hasErrors()){
+            log.error("BindingResult errors: " + bindingResult.getAllErrors());
+            model.addAttribute("student", studentDto);
+            return "edit-student";
+        }
+        studentDto.setId(studentId);
+        studentService.updateStudent(studentDto);
+        log.info("Student successfully updated");
         return "redirect:/students";
     }
 }
