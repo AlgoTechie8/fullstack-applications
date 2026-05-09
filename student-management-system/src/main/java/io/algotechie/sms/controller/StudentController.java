@@ -111,4 +111,16 @@ public class StudentController {
         log.info("Student successfully updated");
         return "redirect:/students";
     }
+    /**
+     *  <p> This handler method to handle delete student request</p>
+     * @param studentId
+     * @return String
+     */
+    // handler method to handle delete student request
+    @GetMapping("/students/{studentId}/delete")
+    public String deleteStudent(@PathVariable("studentId") Long studentId){
+        log.info("Inside Controller deleteStudent()");
+        studentService.deleteStudent(studentId);
+        return "redirect:/students";
+    }
 }
