@@ -123,4 +123,17 @@ public class StudentController {
         studentService.deleteStudent(studentId);
         return "redirect:/students";
     }
+    /**
+     * <p> This handler method to handle view student request </p>
+     * @param studentId, model
+     * @return String
+     */
+    // handler method to handle view request
+    @GetMapping("/students/{studentId}/view")
+    public String viewStudentDetails(@PathVariable("studentId")  Long studentId, Model model){
+        log.info("Inside Controller viewStudentDetails() studentId: {}",studentId);
+        StudentDto student = studentService.findStudentById(studentId);
+        model.addAttribute("student", student);
+        return "view-student-details";
+    }
 }
