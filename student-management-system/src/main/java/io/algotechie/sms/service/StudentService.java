@@ -13,4 +13,6 @@ public interface StudentService {
     StudentDto findStudentById(Long studentId);
 
     void updateStudent(@Valid StudentDto studentDto);
+
+    void deleteStudent(Long studentId);
 }

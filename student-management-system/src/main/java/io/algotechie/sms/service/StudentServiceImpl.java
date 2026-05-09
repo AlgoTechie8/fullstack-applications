@@ -71,4 +71,16 @@ public class StudentServiceImpl  implements StudentService {
         studentRepository.save(StudentMapper.mapToStudent(studentDto));
         log.info("Student successfully updated ");
     }
+
+    /**
+     * <p> This method used to delete the existing record for delete request</p>
+     * @Param studentId
+     * @return Void
+     */
+    @Override
+    public void deleteStudent(Long studentId) {
+        log.info("Inside StudentServiceImpl.deleteStudent() {}",studentId);
+        studentRepository.deleteById(studentId);
+        log.info("Student successfully deleted");
+    }
 }
