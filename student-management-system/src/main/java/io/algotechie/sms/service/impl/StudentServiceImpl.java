@@ -1,9 +1,10 @@
-package io.algotechie.sms.service;
+package io.algotechie.sms.service.impl;
 
 import io.algotechie.sms.dto.StudentDto;
 import io.algotechie.sms.entity.Student;
 import io.algotechie.sms.mapper.StudentMapper;
 import io.algotechie.sms.repository.StudentRepository;
+import io.algotechie.sms.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
